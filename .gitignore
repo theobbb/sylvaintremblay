@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /studio
+/public/img
 /.pnp
 .pnp.js
 

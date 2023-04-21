@@ -161,7 +161,7 @@ const Oeuvres = () => {
   }, []);
 
 
-
+  const fondSrc = 'https://cdn.sanity.io/images/r9dm8hy5/production/ef325b9fedc11739583707c4f6b6a2d28c7ce6f9-3300x2202.jpg?w=1920&h=1080&fit=max'
 
   return data? (
     <>
@@ -177,7 +177,7 @@ const Oeuvres = () => {
         </div>}
         
         <div className='background'>
-            <motion.img initial={{opacity: 0}} animate={{opacity: 1}} transition={transition} src='/img/fond-oeuvres.jpg' />
+            <motion.img initial={{opacity: 0}} animate={{opacity: 1}} transition={transition} src={fondSrc} />
           </div>
         
         <div className={cn('serie-titles', {open:slug})}>

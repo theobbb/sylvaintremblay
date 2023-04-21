@@ -126,7 +126,7 @@ const Home = ({data, nouvelles, pageReady}) => {
                         </div>
 
                     <div className='portrait'>
-                    <img  src='https://cdn.sanity.io/images/r9dm8hy5/production/53a6c217825efd42b1798115ee4521e5a4d76394-5456x3064.jpg?fit=max'></img>
+                    <img  src='https://cdn.sanity.io/images/r9dm8hy5/production/53a6c217825efd42b1798115ee4521e5a4d76394-5456x3064.jpg?w=1920&h=1080&fit=max'></img>
                     </div>
 
                     

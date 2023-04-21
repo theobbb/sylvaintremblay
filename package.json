@@ -1,0 +1,63 @@
+{
+  "name": "sylvaintremblay",
+  "homepage": "https://sylvaintremblay.art/",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.12.1",
+    "@sanity/client": "^2.16.0",
+    "@sanity/image-url": "^1.0.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "aos": "^2.3.4",
+    "classnames": "^2.3.1",
+    "emailjs-com": "^3.2.0",
+    "embla-carousel-autoplay": "^7.1.0",
+    "embla-carousel-react": "^7.1.0",
+    "framer-motion": "^4.1.17",
+    "konva": "^8.1.3",
+    "locomotive-scroll": "^4.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-ga": "^3.3.1",
+    "react-indiana-drag-scroll": "^2.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^5.0.1",
+    "react-spring": "^9.2.4",
+    "sass": "^1.38.0",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "json-server --watch db.json --port 5000"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "node-sass": "^8.0.0"
+  }
+}

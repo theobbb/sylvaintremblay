@@ -1,0 +1,248 @@
+
+.home {
+    display: flex;
+    flex-direction: column;
+    .portrait {
+        display: flex;
+        width: 100%;
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .first {
+        min-height: calc(100vh);
+        display: flex;
+        
+
+        @media (max-width: 1200px) {
+            flex-direction: column-reverse;
+            justify-content: space-around;
+            .main-video {
+                padding-top: 32px;
+                padding-bottom: 16px;
+            }
+        }
+        
+
+    }
+
+    
+
+    .p1, .p2, .p3, .p4 {
+        max-width: 100%;
+        @media (max-width: 1200px) {
+            padding: 64px 24px;
+            
+            padding-left: 64px;
+        }
+
+    }
+
+    .p1 {
+        text-indent: 64px;
+        width: 700px;
+        padding: 18px;
+        padding-left: 72px;
+        align-self: flex-end;
+
+
+    }
+    .p2 {
+        
+        padding: 0 72px;
+        padding-top: 128px;
+        width: 850px;
+        align-self: flex-end;
+        
+        
+    }
+
+    .p3 {
+        width: 900px;
+        padding: 24px;
+        padding-bottom: 64px;
+        padding-left: 12vw;
+
+    }
+
+    .p4 {
+        width: 900px;
+        align-self: flex-end;
+        padding: 48px;
+        padding-top: 64px;
+        padding-bottom: 200px;
+
+    }
+
+    .scroll-more {
+        display: flex;
+        align-content: center;
+        position: absolute;
+        right: 30px;
+        top: calc(100vh - 42px);
+        
+        > .text {
+            padding-bottom: 12px;
+            padding-right: 12px;
+            align-self: center;
+            vertical-align: center;
+            height: fit-content;
+            h4 {
+                
+            }
+        }
+        .arrow {
+            
+        }
+        svg {
+            
+            background: none !important;
+            filter: invert(1);
+            
+        }
+        @media (max-width: 1000px) {
+            display: none;
+        }
+    }
+    p {
+        text-indent: 48px;
+        padding: 24px;
+        
+        width: 800px;
+        max-width: 100%;
+        //text-align: justify;
+        padding-left: 64px;
+        padding-top: 64px;
+
+        @media (max-width: 1000px) {
+            padding: 64px 24px;
+        }
+        
+
+        strong {
+            font-weight: 600 !important;
+        }
+    }
+    
+
+    .main-video {
+        height: calc(100vh - 76px);
+        padding: 0 12px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-bottom: 30px;
+        position: relative;
+        video {
+            align-self: center;
+            max-width: 100%;
+            width: auto;
+            max-height: 700px;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1000px) {
+            height: 50vh;
+            padding: 24px 0;
+        }
+        @media (max-width: 1000px) {
+            height: 50vh;
+            padding: 24px 0;
+        }
+    }
+    .nouvelles-home {
+        padding: 100px 0;
+        
+        @media (max-width: 1250px) {
+            padding: 64px 0;
+            padding-top: 96px;
+        }
+        .city-banner {
+            display: none;
+        }
+
+
+
+    }
+    @media (max-width: 600px) {
+        flex-direction: column;
+        .more {
+            padding-top: 8px;
+        }
+
+    }
+
+    .more {
+        padding-top: 12px;
+        display: flex;
+        align-self: flex-end;
+        justify-content: flex-end;
+        width: 1176px;
+        margin: auto;
+
+        @media (max-width: 1230px) {
+            width: 100%;
+            padding: 0 24px;
+        }
+    }
+
+    .nouvelles-titre {
+        width: 1176px;
+        
+        
+        //margin: auto;
+        display: flex;
+        justify-content: space-between;
+        
+        
+        @media (max-width: 1230px) {
+            width: 100%;
+            //padding: 0 24px;
+        }
+    }
+    .nouvelles {
+        padding: 0;
+    }
+}
+
+.bio {
+
+}
+.portrait {
+    width: 100%;
+    img {
+        object-fit: cover;
+        object-position: center;
+        min-height: 1000px;
+
+        width: 100%;
+    }
+}
+.new {
+
+    
+    .img {
+        position: relative;
+        height: 200px;
+        width: 100%;
+        
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        img {
+            
+            top: 0;
+            min-height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: -1;
+            
+        }
+    }
+}

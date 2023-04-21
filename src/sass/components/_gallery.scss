@@ -1,0 +1,30 @@
+.gallery {
+    display: flex;
+    padding-left: 10vw;
+
+    .img-block {
+        position: relative;
+        min-width: 40vw;
+        max-height: 80vh;
+        padding: 2vh 2vw;
+
+        &.img-1 {
+            
+        }
+        &.img-2 {
+            
+        }
+        &.img-3 {
+            
+        }
+        &.img-4 {
+            
+        }
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+
+        }
+    }
+}

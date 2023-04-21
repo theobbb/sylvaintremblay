@@ -1,0 +1,44 @@
+
+body {
+    background-color: rgb(212, 212, 212);
+    transition: background-color .3s ease;
+    .page {
+        background: #eeeeee;
+        transition: background-color .3s ease;
+    }
+    span, 
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      opacity: 0.88;
+      transition: background-color .3s ease;
+    }
+
+}
+
+body.dark {
+    
+    background: #2a2a2a;
+    //background-color: #1d1d1d;
+    .page {
+        background-color: #1d1d1d;
+        //background: #2a2a2a;
+        
+    }
+    span, 
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: rgb(233, 233, 233);
+      
+      opacity: 0.88;
+    }
+}
+
+

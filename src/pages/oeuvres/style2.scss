@@ -1,0 +1,466 @@
+.page.open {
+    .oeuvres {
+        .background {
+            
+        }
+    }
+}
+
+.oeuvres {
+    padding: 60px 0;
+    
+    
+    width: 100%;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: .3;
+        transition: .7s ease;
+        transform: skew(0,0) scale(1);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            
+        }
+    }
+    
+    &.open {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+
+        .background {
+            opacity: .1;
+            transform: skew(-2deg, 0) scale(1.05);
+        }
+
+        .serie-titles {
+            @media (max-width: 1200px), (max-height: 700px) {
+                display: none;
+            }
+        }
+    }
+
+    .serie-titles {
+        padding: 48px 64px;
+        pointer-events: auto;
+        z-index: 1;
+
+        @media (max-width: 1100px) {
+            padding: 28px 18px;
+        }
+        
+        
+        &.open {
+            
+            position: fixed;
+            width: 100%;
+
+            .serie-title {
+                opacity: .2;
+            }
+            
+            .letter {
+                font-size: 3rem;
+            }
+        }
+    }
+    .first-img {
+        
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        height: 84px;
+        overflow: hidden;
+        position: relative;
+        
+
+        &:not(:last-child) {
+            margin-right:24px;
+            @media (max-width: 1100px) {
+                margin-right: 12px;
+            }
+        }
+
+        
+        
+        img {
+            height: 100%;
+            
+            position: absolute;
+            width: 100%;
+            object-fit: cover;
+            
+        }
+    }
+    .imgs {
+        display: flex;
+        
+
+        padding-top: 24px;
+    }
+
+    .serie-title {
+        
+        position: relative;
+        display: flex;
+        transition: opacity .2s ease;
+        width: 100%;
+        
+
+        &:hover {
+            background-color: rgb(235, 235, 235);
+            
+
+            .title {
+                justify-content: space-around;
+                width: 100%;
+            }
+            
+        }
+        
+
+        .len {
+            padding-right: 20px;
+        }
+        .title {
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            
+            max-width: 100%;
+            text-transform: uppercase;
+           
+            
+            .word {
+                
+                display: flex;
+                padding-right: 15px;
+            }
+        }
+
+        &.open {
+            .letter {
+                font-size: 4rem;
+            }
+            opacity: .8 !important;
+
+        }
+    }
+    .arrow-return {
+        width: fit-content;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 200;
+        opacity: .7;
+        padding: 24px 28px;
+        path {
+            stroke: black;
+        }
+    }
+
+    .controls {
+        opacity: .5;
+        position: fixed;
+        bottom: 210px;
+        right: 100px;
+        z-index: 100;
+        display: flex;
+
+        @media (max-width: 1200px), (max-height: 700px) {
+            display: none;
+        }
+
+        .arrow {
+            cursor: pointer;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+    
+            svg {
+                
+                border-radius: 50%;
+                background-color: rgba(0, 0, 0, 0.698);
+                path {
+                    transform: translate3d(-20%, 0, 0);
+                }
+            }
+        }
+    }
+    
+
+    .link {
+        pointer-events: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: auto;
+        z-index: 200;
+    }
+
+    .serie {
+        overflow: hidden;
+        padding: 12px 7%;
+        
+        position: relative;
+        box-sizing: border-box;
+        
+        &:not(.open) {
+            
+            display: flex;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.349);
+            }
+
+
+
+        }
+        &.vertical {
+            .infos {
+                padding: 8px 0;
+                right: 0;
+                left: 60px;
+                top: 40px;
+                height: auto;
+                
+                .inner {
+                    display: flex;
+                    justify-content: flex-end;
+                    h4 {
+                        padding-bottom: 0;
+                        padding-right: 10px;
+                    }
+                }
+            }
+            .main {
+                top: 40px !important;
+            }
+        }
+        
+        .infos {
+            
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100%;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h4 {
+                overflow: hidden;
+               padding-bottom: 4px;
+            }
+            h5 {
+                overflow: hidden;
+                opacity: .75;
+            }
+            
+            > .inner {
+                padding: 0 18px;
+                text-align: right;
+            }
+        }
+    }
+
+    .nav {
+        
+        height: 100px;
+        width: 100%;
+
+        > .inner {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+       
+        .toile {
+            background: rgba(0, 0, 0, 0.253);
+            height: 100%;
+            margin: 0 6px;
+
+
+            .inner {
+                display: inline-flex;
+            }
+            
+            img {
+                height: 100%;
+                object-fit: contain;
+                position: relative;
+            }
+        }
+    }
+
+    .serie.open {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 80;        
+
+        display: flex;
+        flex-direction: column;
+        padding: 24px 7%;
+        padding-top: 84px;
+
+        .nav {
+            
+                width: 100%;
+                max-height: 80px;
+                height: 100%;
+                position: relative;
+                
+                @media (max-height: 450px) {
+                    display: none;
+                }
+
+                >.inner {
+                    justify-content: flex-start;
+                    display: flex;
+                    height: 100%;
+                    width: fit-content;
+                }
+
+                .toile {
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                    width: 2px;
+                    cursor: pointer;
+  
+                    img {
+                        overflow: hidden;
+                        position: relative;
+                        object-fit: cover;
+                        width: auto;
+                        height: 100%;
+                        
+                        max-height: 100%;
+                        display: block;
+                        
+                        cursor: pointer;
+                    }
+                    .outline {
+                        border: rgba(36, 36, 36, 0.616) 1px solid;
+                        position: absolute;
+                        background: rgba(255, 255, 255, 0.486);
+
+                        top: -8px;
+                        right: -16px;
+                        left: -16px;
+                        bottom: -8px;
+                        z-index: 100;
+                    }
+                }
+
+            }
+
+
+        .main {
+            
+            flex: 1;
+            top: 0;
+            left: 0;
+            flex: 1;
+            position: relative;
+            @media (max-width: 1200px), (max-height: 700px) {
+                top: 30px;
+            }
+            > .inner {
+                height: 100%;
+                position: absolute;
+                width: 100%;
+                @media (max-width: 1650px) {
+                    height: 90%;
+                }
+            }
+
+            .toile {
+                width: 100%;
+                height: 100%;
+                
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+
+                img {
+                    position: absolute;
+                    
+                    padding-top: 0;
+                    padding-bottom: 36px;
+                    max-width: 100%;
+                    max-height: 100%;
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                    display: inline-flex;
+                }
+            }
+        }
+        
+        
+    }
+
+
+
+}
+body.dark {
+    .oeuvres {
+
+        .serie-title {
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.89);
+                
+    
+                .title {
+                    justify-content: space-around;
+                    width: 100%;
+                }
+                
+            }
+        }
+
+        .nav {
+            .toile {
+                background: rgba(255, 255, 255, 0.253);
+            }
+        }
+
+        .arrow-return {
+            path {
+                stroke: rgb(255, 255, 255);
+            }
+        }
+        .outline {
+            
+            border: rgba(68, 68, 68, 0.616) 1px solid !important;
+            background: rgba(0, 0, 0, 0.486) !important;
+                        
+        }
+    }
+}
+body.dark {
+    .controls .arrow svg {
+        background-color: rgba(255, 255, 255, 0.192);
+    }
+}

@@ -95,9 +95,6 @@ const Carousel = () => {
       };
     }, [containerRef]);
 
-    console.log(inView)
-
-
     const matchDownMD = useMediaQuery(theme=>theme.breakpoints.down('md'))
 
 

@@ -16,7 +16,7 @@ export default function CitiesCarousel({items, query, clickCity}) {
       const [emblaRef] = useEmblaCarousel({
         loop: true, 
         dragFree: true, 
-        speed: 0.01, 
+        speed: 0.02, 
         direction: 'ltr', 
         startIndex: 5,
     }, [Autoplay(autoplayOptions)])

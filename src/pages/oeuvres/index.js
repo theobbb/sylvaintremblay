@@ -444,22 +444,20 @@ const Serie = ({serie, slide, w, h, serieIndex, directionX, directionY, setDirec
                   >
                   {serie.toiles?.map((toile, index) => (
                     <motion.div 
-                      
                       transition={transition}
-                      
                       animate={animState>=1? {width: 'fit-content', margin: '0 16px'}:{width: 2, margin: '0 6px' }}
-                      //style={{margin: animState>=1? '0 16px':null}}
                       onClick={() => {
-                        
                           setDirectionX(slide > index? -1:1); 
                           setSlide(index)
-                        
                       }} 
                       layoutId={`mini-${toile._key}`} 
                       key={`mini-${toile._key}`} 
                       className='mini toile'>
                         
-                        <motion.img transition={transition}  animate={{opacity: animState>=1? 1:0}} src={toile.image.url} />
+                        <motion.img 
+                        transition={transition} 
+                        animate={{opacity: animState>=1? 1:0}} 
+                        src={`${toile.image.url}&w=200&h=200`} />
                         
                         {animState>=1 && index === slide && (
                         <motion.div
@@ -483,26 +481,19 @@ const Serie = ({serie, slide, w, h, serieIndex, directionX, directionY, setDirec
 
 const Controls = ({controls}) => (
   <div className='controls'>
-    
-    
+
       <motion.div onClick={() => controls.right()} className='arrow' initial={{x: '80%'}}>
         <Arrow deg={0} />
       </motion.div>
-    
 
-    
       <motion.div onClick={() => controls.down()} className='arrow' initial={{y: '80%'}}>
       <Arrow deg={90} />
       </motion.div>
-    
 
-    
       <motion.div onClick={() => controls.left()} className='arrow' initial={{x: '-80%'}}>
       <Arrow deg={180} />
       </motion.div>
-    
 
-    
       <motion.div onClick={() => controls.up()} className='arrow' initial={{y: '-80%'}}>
         <Arrow deg={-90} />
       </motion.div>

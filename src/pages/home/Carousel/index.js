@@ -7,6 +7,7 @@ import Spinner from '../../../components/Spinner'
 import { Lang } from '../../../components/Context'
 import { Arrow } from '../../../components/Arrow'
 import { Box, ButtonBase, useMediaQuery } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const transition = { duration: .7, ease: [0.43, 0.13, 0.23, 0.96] }
 
@@ -19,7 +20,11 @@ const Carousel = () => {
             _id,
             title,
             dimensions,
-            serie->{title},
+            'serie': {
+              'title': serie->title,
+              'slug': serie->slug
+            } ,
+
             'order': order,
             images[]{
               _key,
@@ -41,7 +46,7 @@ const Carousel = () => {
         .then((data) => {setData(data)})
         .catch(console.error)
     }, [])
-
+    
     const [[index, direction], setIndex] = useState([0,0]);
 
     function paginate(x) {
@@ -54,12 +59,51 @@ const Carousel = () => {
 
     }
 
+    const [interacted, setInteracted] = useState(false);
+    
+    useEffect(() => {
+      if (interacted) {
+        const timeout = setTimeout(() => {
+          setInteracted(false)
+        }, 10000)
+        return () => clearTimeout(timeout)
+      }
+    }, [interacted])
+
+    const [inView, setInView] = useState(false);
+
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+      const container = containerRef.current;
+      if (!container) return console.log('no ref');
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setInView(entry.isIntersecting);
+        },
+        {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.5, // adjust threshold as needed
+        }
+      );
+      if (container) {
+        observer.observe(container);
+      }
+      return () => {
+        observer.unobserve(container);
+      };
+    }, [containerRef]);
+
+    console.log(inView)
+
+
     const matchDownMD = useMediaQuery(theme=>theme.breakpoints.down('md'))
 
 
         return data? (
           <div className='carousel' 
-          
+          ref={containerRef}
           >
             <Box className='dots' sx={{display: 'flex'}}>
             {matchDownMD && <>
@@ -78,8 +122,6 @@ const Carousel = () => {
                 animate={i===index?{opacity: 1, scale: 1.2}:{opacity: 0.4}}
                 whileTap={{scale:0.9}}
                 onClick={() => setIndex(([oldIndex, direction]) => {
-                
-                  console.log(oldIndex < i? -1:1)
                   return ([i, oldIndex > i? -1:1])
                 })} 
                 className={`dot ${i===index?'active':''}`}>
@@ -109,7 +151,7 @@ const Carousel = () => {
 
             {data.map((slide, i) => i === index && (
 
-              <Slide paginate={paginate} key={slide._id} slide={slide} direction={direction} />
+              <Slide paginate={paginate} key={slide._id} slide={slide} direction={direction} {...{interacted, setInteracted, inView}} />
               
             ))}
             </AnimatePresence>
@@ -119,7 +161,8 @@ const Carousel = () => {
         ) : (<Spinner />)
 }
 
-const Slide = ({slide, direction, paginate}) => {
+
+const Slide = ({slide, direction, paginate, interacted, setInteracted, inView}) => {
   const lang = useContext(Lang);
 
 
@@ -167,6 +210,44 @@ const swipePower = (offset, velocity) => {
 
   
 
+
+  const timer = 3000;
+
+  const [itemKeys, setItemKeys] = useState(0);
+
+  useEffect(() => {
+    const imagesKeys = slide.images?.slice(1).map(image => image._key)
+    const videosKeys = slide.videos?.map(video => video._key)
+    const keys = [...(imagesKeys || []), ...(videosKeys || [])]
+    setItemKeys(keys)
+  }, [slide])
+
+  useEffect(() => {
+    if (interacted || !inView) return;
+    
+
+    
+    //setItemCount(slide.images.length + slide.videos.length)
+
+    const intervalId = setTimeout(() => {
+      const lastIndex = itemKeys.indexOf(selected)
+      let newSelected = 0;
+      if (lastIndex === itemKeys.length - 1) return paginate(1);
+      if (lastIndex === -1 && itemKeys.length > 0) newSelected = itemKeys[0];
+       
+      newSelected = itemKeys[lastIndex + 1] || itemKeys[0]
+      const newType = slide.images.find(image => image._key === newSelected)?'imgs':'video'
+      setSelected(newSelected)
+      setSection(newType)
+
+      
+    }, timer);
+
+    return () => clearInterval(intervalId);
+  }, [itemKeys, selected, interacted, inView]);
+
+  
+
   return (
     <motion.div 
 
@@ -208,9 +289,18 @@ const swipePower = (offset, velocity) => {
                           initial={{opacity:0}}
                           
                           className='text'>
-                            <h4 className='title'>{slide.title}</h4>
+                            <h4 className='title'>
+                            <Link to={lang==='fr'? `/oeuvres/${slide.serie.slug[lang].current}`:`/en/works/${slide.serie.slug[lang].current}`}>
+                            {slide.title}
+                            </Link>
+                            </h4>
                             <h5 className='dims'>{slide.dimensions + (lang === 'fr'?' po':' in')}</h5>
-                            <h5 className='serie'>{slide.serie.title[lang]}</h5>
+                            <h5 className='serie'>
+                            <Link to={lang==='fr'? `/oeuvres/${slide.serie.slug[lang].current}`:`/en/works/${slide.serie.slug[lang].current}`}>
+                            {slide.serie.title[lang]}
+                            </Link>
+                            </h5>
+                            
                           </motion.div>
                         
                           
@@ -232,6 +322,7 @@ const swipePower = (offset, velocity) => {
                                   setSelected(null); 
                                   setSection(null);
                                 }
+                                setInteracted(true);
                                 }}
                                 
                               initial={{opacity:0}} 
@@ -262,13 +353,16 @@ const swipePower = (offset, velocity) => {
                                   setSelected(null); 
                                   setSection(null);
                                 }
+                                setInteracted(true);
                                 }}
                             exit={{opacity:0}}
                             animate={ready? {opacity:1, y: 0}:{opacity:0}} 
                             initial={{opacity:0}} 
                             transition={{delay: .4 + .4*index , ...transition}}
                             className={cn('video', {selected: video._key === selected})}>
-                              <video autoPlay muted loop src={video.asset.url} />
+                            <ButtonBase disableRipple sx={{width: '100%', height: '100%'}}>
+                              <video disableRemotePlayback autoPlay muted loop src={video.asset.url} />
+                              </ButtonBase>
                             </motion.div>
                           ))}
                         </div>}

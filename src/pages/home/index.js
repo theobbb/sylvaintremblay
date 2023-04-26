@@ -53,6 +53,19 @@ const Home = ({data, nouvelles, pageReady}) => {
             "Representation of Canada in Japan as part of the 20th Japan International Art Exchange Exhibition",
         ]
     }
+
+    const top = {
+        fr: [
+            "Artiste international, Sylvain Tremblay est un maître de la texture et de la sculpture en peinture.",
+            "Sa technique unique crée des tableaux captivants et expressifs, qui évoquent l'essence même de la nature et de l'humanité.",
+            "Ses œuvres ont été exposées dans des galeries du monde entier et sont prisées par les collectionneurs d'art les plus exigeants."
+        ],
+        en: [
+            "International artist, Sylvain Tremblay is a master of texture and sculpture in painting.",
+            "His unique technique creates captivating and expressive paintings, which evoke the very essence of nature and humanity.",
+            "His works have been exhibited in galleries around the world and are prized by the most demanding art collectors."
+        ]
+    }
     
     
     
@@ -67,18 +80,22 @@ const Home = ({data, nouvelles, pageReady}) => {
         
   
                        <div className='main-video'>
-                        <video autoPlay loop muted playsInline src={`/videos/${lang}.mp4`} />
+                        <video disableRemotePlayback autoPlay loop muted playsInline src={`/videos/${lang}.mp4`} />
                         </div>
-                        <Box sx={{my: 8, mx: {xs: 2, md: 9.5, lg: 10}}}>
-
-                        {infos[lang].map((info, i) => (
-                            <Box key={`info-${i}`} sx={{my: 1}}>
-
-                            <h3 >{info}</h3>
+                        <Box sx={{my: 8, mx: {xs: 2, sm: 3, md: 4, lg: 10}, maxWidth: 1500}}>
+                        
+                        
+                        {top[lang].map((p, i) => (
+                            <Box key={`top-${i}`} sx={{my: 2}}>
+                            {matchDownMD ? <h4>{p}</h4> : <h3>{p}</h3>}
+                           
                             </Box>
+                            
                         ))}
-
+                        
+                        
                         </Box>
+                        
                         <AnimatePresence>
                         {scrollMore && (
                         <motion.div 
@@ -98,7 +115,16 @@ const Home = ({data, nouvelles, pageReady}) => {
 
                         <Carousel />
 
+                        <Box sx={{marginTop: 12, marginBottom: 4, mx: {xs: 2, sm: 3, md: 4, lg: 10}, maxWidth: 1300}}>
 
+                            {infos[lang].map((info, i) => (
+                                <Box key={`info-${i}`} sx={{my: 2}}>
+                                {matchDownMD ? <h4>{info}</h4> : <h3>{info}</h3>}
+                                
+                                </Box>
+                            ))}
+
+                        </Box>
                         
 
                         

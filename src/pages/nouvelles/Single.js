@@ -32,6 +32,7 @@ function Single({slug, data, delay}) {
         window.addEventListener('resize', resize);
     }, [setHeaderH])
 
+
     return data.map((item) => (item.slug.fr.current === slug || item.slug.en.current === slug) && (
         
        
@@ -51,7 +52,7 @@ function Single({slug, data, delay}) {
                             <motion.div className='return' whileTap={{ scale: 0.9 }} >
                                 
                                 <ArrowReturn />
-                                <Link className='link' to={lang == 'fr'? '/nouvelles':'/en/news'} />
+                                <Link className='link noline' to={lang == 'fr'? '/nouvelles':'/en/news'} />
                             </motion.div>
 
                             <motion.div className='titles ' transition={transition} layoutId={`texts-container-${item._id}`}>     
@@ -156,7 +157,7 @@ function Single({slug, data, delay}) {
             transition={{ duration: 0.3, delay: 0.15 }}
             className="overlay"
             >
-                <Link className='link' to={lang==='fr'?'/nouvelles':'/en/news'} />
+                <Link className='link noline' to={lang==='fr'?'/nouvelles':'/en/news'} />
             </motion.div>
         </>
         
@@ -172,16 +173,16 @@ const ArrowTop = () => (
 )
 
 function Controls({slugs, index}) {
-    console.log(index)
+
     return (
         <div className='controls'>
             <motion.div className='prev' initial={{rotate: 180}} whileTap={{ scale: 0.9 }}>
-                <Link to={index > 0 ? slugs[index - 1] : slugs[slugs.length - 1]}>
+                <Link to={index > 0 ? slugs[index - 1] : slugs[slugs.length - 1]} className='noline'>
                     <ArrowTop />
                 </Link>
             </motion.div>
             <motion.div whileTap={{ scale: 0.9 }} className='next'>
-                <Link to={index < slugs.length - 1 ? slugs[index + 1] : slugs[0]}>
+                <Link to={index < slugs.length - 1 ? slugs[index + 1] : slugs[0]} className='noline'>
                     <ArrowTop />
                 </Link>
             </motion.div>

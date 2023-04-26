@@ -3,7 +3,6 @@ import { Link, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence, AnimateSharedLayout, motion, useMotionValue, useReducedMotion } from 'framer-motion'
 import cn from 'classnames'
 import { Lang, Theme } from './Context'
-import NavLink from './NavLink'
 import { Box, useMediaQuery } from '@mui/material'
 import LocaleLinks from './LocaleLinks'
 import NavLinks from './NavLinks'
@@ -20,6 +19,8 @@ const Menu = (props) => {
     const [inputText, setInputText] = useState(null)
 
     const [open, setOpen] = useState(false)
+
+
 
     
     const year = new Date().getFullYear()
@@ -45,6 +46,9 @@ const Menu = (props) => {
 
     const location = useLocation();
 
+    useEffect(() => {
+        setOpen(false)
+    }, [location.pathname])
 
     const left = useRef();
     const top = useRef();
